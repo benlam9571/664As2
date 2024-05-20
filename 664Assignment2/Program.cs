@@ -35,8 +35,8 @@ class Program
                     return;
                 default:
                     Console.WriteLine("Invalid option. Please try again.");
-                    Console.WriteLine("Press any key to continue...");
-                    Console.Read(); // Pause before clearing
+                    Console.WriteLine("** Press any key to continue **");
+                    Console.Read();
                     break;
             }
         }
@@ -56,9 +56,9 @@ class Program
         }
         else
         {
-            Console.WriteLine("Invalid staff credentials.");
-            Console.WriteLine("Press any key to continue...");
-            Console.Read(); // Pause before clearing
+            Console.WriteLine("Invalid staff username/password.");
+            Console.WriteLine("** Press any key to continue **");
+            Console.Read();
             Console.Clear();
         }
     }
@@ -105,8 +105,8 @@ class Program
                     return;
                 default:
                     Console.WriteLine("Invalid option. Please try again.");
-                    Console.WriteLine("Press any key to continue...");
-                    Console.Read(); // Pause before clearing
+                    Console.WriteLine("** Press any key to continue **");
+                    Console.Read();
                     break;
             }
         }
@@ -114,9 +114,9 @@ class Program
 
     private static void MemberLogin()
     {
-        Console.Write("Enter first name: ");
+        Console.Write("Enter First name: ");
         string firstName = Console.ReadLine();
-        Console.Write("Enter last name: ");
+        Console.Write("Enter Last name: ");
         string lastName = Console.ReadLine();
         Console.Write("Enter password: ");
         string password = Console.ReadLine();
@@ -129,9 +129,9 @@ class Program
         }
         else
         {
-            Console.WriteLine("Invalid member credentials.");
-            Console.WriteLine("Press any key to continue...");
-            Console.Read(); // Pause before clearing
+            Console.WriteLine("Invalid member name / password.");
+            Console.WriteLine("** Press any key to continue **");
+            Console.Read();
             Console.Clear();
         }
     }
@@ -178,8 +178,8 @@ class Program
                     return;
                 default:
                     Console.WriteLine("Invalid option. Please try again.");
-                    Console.WriteLine("Press any key to continue...");
-                    Console.Read(); // Pause before clearing
+                    Console.WriteLine("** Press any key to continue **");
+                    Console.Read();
                     break;
             }
         }
@@ -192,8 +192,8 @@ class Program
         if (string.IsNullOrWhiteSpace(title))
         {
             Console.WriteLine("No movie title entered. Please try again.");
-            Console.WriteLine("Press any key to continue...");
-            Console.ReadKey(); // Pause before clearing
+            Console.WriteLine("** Press any key to continue **");
+            Console.ReadKey();
             Console.Clear();
             return;
         }
@@ -237,8 +237,8 @@ class Program
                 Console.WriteLine("Movie(s) added successfully.");
             }
         }
-        Console.WriteLine("Press any key to continue...");
-        Console.Read(); // Pause before clearing
+        Console.WriteLine("** Press any key to continue **");
+        Console.Read();
         Console.Clear();
     }
 
@@ -262,8 +262,8 @@ class Program
                 if (!movieCollection.RemoveMovie(title))
                 {
                     Console.WriteLine("Not enough copies to remove or movie does not exist.");
-                    Console.WriteLine("Press any key to continue...");
-                    Console.Read(); // Pause before clearing
+                    Console.WriteLine("** Press any key to continue **");
+                    Console.Read();
                     Console.Clear();
                     return;
                 }
@@ -271,16 +271,16 @@ class Program
 
             Console.WriteLine("Movie(s) removed successfully.");
         }
-        Console.WriteLine("Press any key to continue...");
-        Console.Read(); // Pause before clearing
+        Console.WriteLine("** Press any key to continue **");
+        Console.Read();
         Console.Clear();
     }
 
     private static void RegisterMember()
     {
-        Console.Write("Enter first name: ");
+        Console.Write("Enter First name: ");
         string firstName = Console.ReadLine();
-        Console.Write("Enter last name: ");
+        Console.Write("Enter Last name: ");
         string lastName = Console.ReadLine();
         Console.Write("Enter contact phone number: ");
         string phoneNumber = Console.ReadLine();
@@ -311,16 +311,16 @@ class Program
         {
             Console.WriteLine("Member already exists.");
         }
-        Console.WriteLine("Press any key to continue...");
-        Console.Read(); // Pause before clearing
+        Console.WriteLine("** Press any key to continue **");
+        Console.Read();
         Console.Clear();
     }
 
     private static void RemoveMember()
     {
-        Console.Write("Enter first name: ");
+        Console.Write("Enter First name: ");
         string firstName = Console.ReadLine();
-        Console.Write("Enter last name: ");
+        Console.Write("Enter Last name: ");
         string lastName = Console.ReadLine();
         Console.Clear();
 
@@ -341,30 +341,30 @@ class Program
         {
             Console.WriteLine("Member not found.");
         }
-        Console.WriteLine("Press any key to continue...");
-        Console.Read(); // Pause before clearing
+        Console.WriteLine("** Press any key to continue **");
+        Console.Read();
         Console.Clear();
     }
 
     private static void FindMemberContact()
     {
-        Console.Write("Enter first name: ");
+        Console.Write("Enter First name: ");
         string firstName = Console.ReadLine();
-        Console.Write("Enter last name: ");
+        Console.Write("Enter Last name: ");
         string lastName = Console.ReadLine();
         Console.Clear();
 
         Member? member = memberCollection.FindMember(firstName, lastName);
         if (member != null)
         {
-            Console.WriteLine($"Contact phone number: {member.ContactPhoneNumber}");
+            Console.WriteLine($"Contact Phone Number: {member.ContactPhoneNumber}");
         }
         else
         {
             Console.WriteLine("Member not found.");
         }
-        Console.WriteLine("Press any key to continue...");
-        Console.Read(); // Pause before clearing
+        Console.WriteLine("** Press any key to continue **");
+        Console.Read();
         Console.Clear();
     }
 
@@ -407,8 +407,8 @@ class Program
                 Console.WriteLine($"Movie '{title}' not available in the library.");
             }
         }
-        Console.WriteLine("Press any key to continue...");
-        Console.Read(); // Pause before clearing
+        Console.WriteLine("** Press any key to continue **");
+        Console.Read();
         Console.Clear();
     }
 
@@ -423,8 +423,8 @@ class Program
         {
             movieCollection.DisplayAllMovies();
         }
-        Console.WriteLine("Press any key to continue...");
-        Console.Read(); // Pause before clearing
+        Console.WriteLine("** Press any key to continue **");
+        Console.Read();
         Console.Clear();
     }
 
@@ -452,8 +452,8 @@ class Program
             }
         }
         Console.WriteLine(); // Add a blank line after the output
-        Console.WriteLine("Press any key to continue...");
-        Console.Read(); // Pause before clearing
+        Console.WriteLine("** Press any key to continue **");
+        Console.Read();
         Console.Clear();
     }
 
@@ -480,8 +480,8 @@ class Program
                 Console.WriteLine("Movie not found.");
             }
         }
-        Console.WriteLine("Press any key to continue...");
-        Console.Read(); // Pause before clearing
+        Console.WriteLine("** Press any key to continue **");
+        Console.Read();
         Console.Clear();
     }
 
@@ -499,16 +499,16 @@ class Program
         {
             Console.WriteLine("Movie not found in your borrowed list.");
         }
-        Console.WriteLine("Press any key to continue...");
-        Console.Read(); // Pause before clearing
+        Console.WriteLine("** Press any key to continue **");
+        Console.Read();
         Console.Clear();
     }
 
     private static void ListBorrowedMovies(Member member)
     {
         member.ListBorrowedMovies();
-        Console.WriteLine("Press any key to continue...");
-        Console.Read(); // Pause before clearing
+        Console.WriteLine("** Press any key to continue **");
+        Console.Read();
         Console.Clear();
     }
 
@@ -522,8 +522,8 @@ class Program
         {
             Console.WriteLine($"{allMovies[i].Value.Title}: {allMovies[i].Value.BorrowCount} times");
         }
-        Console.WriteLine("Press any key to continue...");
-        Console.Read(); // Pause before clearing
+        Console.WriteLine("** Press any key to continue **");
+        Console.Read();
         Console.Clear();
     }
 }
