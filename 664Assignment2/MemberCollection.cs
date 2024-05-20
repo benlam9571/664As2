@@ -2,7 +2,7 @@ public class MemberCollection
 {
     private Member[] members;
     private int memberCount;
-    private const int InitialCapacity = 4;
+    private const int InitialCapacity = 1000;
 
     public MemberCollection()
     {

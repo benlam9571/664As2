@@ -4,12 +4,12 @@
     <RestoreSuccess Condition=" '$(RestoreSuccess)' == '' ">True</RestoreSuccess>
     <RestoreTool Condition=" '$(RestoreTool)' == '' ">NuGet</RestoreTool>
     <ProjectAssetsFile Condition=" '$(ProjectAssetsFile)' == '' ">$(MSBuildThisFileDirectory)project.assets.json</ProjectAssetsFile>
-    <NuGetPackageRoot Condition=" '$(NuGetPackageRoot)' == '' ">/Users/benbang/.nuget/packages/</NuGetPackageRoot>
-    <NuGetPackageFolders Condition=" '$(NuGetPackageFolders)' == '' ">/Users/benbang/.nuget/packages/</NuGetPackageFolders>
+    <NuGetPackageRoot Condition=" '$(NuGetPackageRoot)' == '' ">/Users/benlam/.nuget/packages/</NuGetPackageRoot>
+    <NuGetPackageFolders Condition=" '$(NuGetPackageFolders)' == '' ">/Users/benlam/.nuget/packages/</NuGetPackageFolders>
     <NuGetProjectStyle Condition=" '$(NuGetProjectStyle)' == '' ">PackageReference</NuGetProjectStyle>
     <NuGetToolVersion Condition=" '$(NuGetToolVersion)' == '' ">6.9.1</NuGetToolVersion>
   </PropertyGroup>
   <ItemGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
-    <SourceRoot Include="/Users/benbang/.nuget/packages/" />
+    <SourceRoot Include="/Users/benlam/.nuget/packages/" />
   </ItemGroup>
 </Project>
