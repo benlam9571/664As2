@@ -36,8 +36,7 @@ class Program
                 default:
                     Console.WriteLine("Invalid option. Please try again.");
                     Console.WriteLine("Press any key to continue...");
-                    Console.ReadKey(); // Pause before clearing
-                    Console.Clear();
+                    Console.Read(); // Pause before clearing
                     break;
             }
         }
@@ -59,7 +58,7 @@ class Program
         {
             Console.WriteLine("Invalid staff credentials.");
             Console.WriteLine("Press any key to continue...");
-            Console.ReadKey(); // Pause before clearing
+            Console.Read(); // Pause before clearing
             Console.Clear();
         }
     }
@@ -107,8 +106,7 @@ class Program
                 default:
                     Console.WriteLine("Invalid option. Please try again.");
                     Console.WriteLine("Press any key to continue...");
-                    Console.ReadKey(); // Pause before clearing
-                    Console.Clear();
+                    Console.Read(); // Pause before clearing
                     break;
             }
         }
@@ -133,7 +131,7 @@ class Program
         {
             Console.WriteLine("Invalid member credentials.");
             Console.WriteLine("Press any key to continue...");
-            Console.ReadKey(); // Pause before clearing
+            Console.Read(); // Pause before clearing
             Console.Clear();
         }
     }
@@ -181,8 +179,7 @@ class Program
                 default:
                     Console.WriteLine("Invalid option. Please try again.");
                     Console.WriteLine("Press any key to continue...");
-                    Console.ReadKey(); // Pause before clearing
-                    Console.Clear();
+                    Console.Read(); // Pause before clearing
                     break;
             }
         }
@@ -233,7 +230,7 @@ class Program
             }
         }
         Console.WriteLine("Press any key to continue...");
-        Console.ReadKey(); // Pause before clearing
+        Console.Read(); // Pause before clearing
         Console.Clear();
     }
 
@@ -257,7 +254,7 @@ class Program
                 {
                     Console.WriteLine("Not enough copies to remove or movie does not exist.");
                     Console.WriteLine("Press any key to continue...");
-                    Console.ReadKey(); // Pause before clearing
+                    Console.Read(); // Pause before clearing
                     Console.Clear();
                     return;
                 }
@@ -266,7 +263,7 @@ class Program
             Console.WriteLine("Movie(s) removed successfully.");
         }
         Console.WriteLine("Press any key to continue...");
-        Console.ReadKey(); // Pause before clearing
+        Console.Read(); // Pause before clearing
         Console.Clear();
     }
 
@@ -306,7 +303,7 @@ class Program
             Console.WriteLine("Member already exists.");
         }
         Console.WriteLine("Press any key to continue...");
-        Console.ReadKey(); // Pause before clearing
+        Console.Read(); // Pause before clearing
         Console.Clear();
     }
 
@@ -336,7 +333,7 @@ class Program
             Console.WriteLine("Member not found.");
         }
         Console.WriteLine("Press any key to continue...");
-        Console.ReadKey(); // Pause before clearing
+        Console.Read(); // Pause before clearing
         Console.Clear();
     }
 
@@ -358,7 +355,7 @@ class Program
             Console.WriteLine("Member not found.");
         }
         Console.WriteLine("Press any key to continue...");
-        Console.ReadKey(); // Pause before clearing
+        Console.Read(); // Pause before clearing
         Console.Clear();
     }
 
@@ -398,7 +395,7 @@ class Program
             }
         }
         Console.WriteLine("Press any key to continue...");
-        Console.ReadKey(); // Pause before clearing
+        Console.Read(); // Pause before clearing
         Console.Clear();
     }
 
@@ -406,7 +403,7 @@ class Program
     {
         movieCollection.DisplayAllMovies();
         Console.WriteLine("Press any key to continue...");
-        Console.ReadKey(); // Pause before clearing
+        Console.Read(); // Pause before clearing
         Console.Clear();
     }
 
@@ -430,7 +427,7 @@ class Program
         }
         Console.WriteLine(); // Add a blank line after the output
         Console.WriteLine("Press any key to continue...");
-        Console.ReadKey(); // Pause before clearing
+        Console.Read(); // Pause before clearing
         Console.Clear();
     }
 
@@ -457,7 +454,7 @@ class Program
             }
         }
         Console.WriteLine("Press any key to continue...");
-        Console.ReadKey(); // Pause before clearing
+        Console.Read(); // Pause before clearing
         Console.Clear();
     }
 
@@ -476,7 +473,7 @@ class Program
             Console.WriteLine("Movie not found in your borrowed list.");
         }
         Console.WriteLine("Press any key to continue...");
-        Console.ReadKey(); // Pause before clearing
+        Console.Read(); // Pause before clearing
         Console.Clear();
     }
 
@@ -484,7 +481,7 @@ class Program
     {
         member.ListBorrowedMovies();
         Console.WriteLine("Press any key to continue...");
-        Console.ReadKey(); // Pause before clearing
+        Console.Read(); // Pause before clearing
         Console.Clear();
     }
 
@@ -499,7 +496,7 @@ class Program
             Console.WriteLine($"{allMovies[i].Value.Title}: {allMovies[i].Value.BorrowCount} times");
         }
         Console.WriteLine("Press any key to continue...");
-        Console.ReadKey(); // Pause before clearing
+        Console.Read(); // Pause before clearing
         Console.Clear();
     }
 }
