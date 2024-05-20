@@ -1,23 +1,18 @@
 public class MemberCollection
 {
-    private const int MaxSize = 1000;
     private Member[] members;
     private int memberCount;
+    private const int InitialCapacity = 4;
 
     public MemberCollection()
     {
-        members = new Member[MaxSize];
+        members = new Member[InitialCapacity];
         memberCount = 0;
     }
 
     public bool AddMember(Member member)
     {
-        if (memberCount >= MaxSize)
-        {
-            Console.WriteLine("Member collection is full.");
-            return false;
-        }
-
+        // Check if the member already exists
         for (int i = 0; i < memberCount; i++)
         {
             if (members[i].FirstName == member.FirstName && members[i].LastName == member.LastName)
@@ -25,6 +20,12 @@ public class MemberCollection
                 Console.WriteLine("Member already exists.");
                 return false;
             }
+        }
+
+        // Resize array if necessary
+        if (memberCount == members.Length)
+        {
+            ResizeArray();
         }
 
         members[memberCount] = member;
@@ -43,10 +44,11 @@ public class MemberCollection
                     Console.WriteLine("Member cannot be removed. They must return all borrowed DVDs first.");
                     return false;
                 }
+
+                // Move the last member into the removed member's place
                 members[i] = members[memberCount - 1];
                 members[memberCount - 1] = null;
                 memberCount--;
-                Console.WriteLine("Member removed successfully.");
                 return true;
             }
         }
@@ -71,5 +73,12 @@ public class MemberCollection
         Member[] allMembers = new Member[memberCount];
         Array.Copy(members, allMembers, memberCount);
         return allMembers;
+    }
+
+    private void ResizeArray()
+    {
+        Member[] newArray = new Member[members.Length * 2];
+        Array.Copy(members, newArray, members.Length);
+        members = newArray;
     }
 }

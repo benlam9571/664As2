@@ -26,18 +26,20 @@ public class Movie
     public Classification Classification { get; set; }
     public int Duration { get; set; }
     public int BorrowCount { get; set; }
+    public int NumberOfCopies { get; set; }
 
-    public Movie(string title, Genre genre, Classification classification, int duration)
+    public Movie(string title, Genre genre, Classification classification, int duration, int numberOfCopies)
     {
         Title = title;
         Genre = genre;
         Classification = classification;
         Duration = duration;
         BorrowCount = 0;
+        NumberOfCopies = numberOfCopies;
     }
 
     public override string ToString()
     {
-        return $"Title: {Title}, Genre: {Genre}, Classification: {Classification}, Duration: {Duration} minutes, Borrowed: {BorrowCount} times";
+        return $"Title: {Title}, Genre: {Genre}, Classification: {Classification}, Duration: {Duration} minutes, Borrowed: {BorrowCount} times, Copies: {NumberOfCopies}";
     }
 }

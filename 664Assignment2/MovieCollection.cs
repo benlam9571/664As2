@@ -34,14 +34,14 @@ public class MovieCollection
             {
                 if (current.Key == title)
                 {
-                    current.Value = movie;
+                    current.Value.NumberOfCopies += movie.NumberOfCopies;
                     return;
                 }
                 current = current.Next;
             }
             if (current.Key == title)
             {
-                current.Value = movie;
+                current.Value.NumberOfCopies += movie.NumberOfCopies;
             }
             else
             {
@@ -60,13 +60,20 @@ public class MovieCollection
         {
             if (current.Key == title)
             {
-                if (previous == null)
+                if (current.Value.NumberOfCopies > 1)
                 {
-                    table[index] = current.Next;
+                    current.Value.NumberOfCopies--;
                 }
                 else
                 {
-                    previous.Next = current.Next;
+                    if (previous == null)
+                    {
+                        table[index] = current.Next;
+                    }
+                    else
+                    {
+                        previous.Next = current.Next;
+                    }
                 }
                 return true;
             }

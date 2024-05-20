@@ -201,21 +201,15 @@ class Program
 
         if (title != null)
         {
-            Movie? movie = movieCollection.GetMovie(title);
-            if (movie != null)
+            Movie? existingMovie = movieCollection.GetMovie(title);
+            if (existingMovie != null)
             {
-                for (int i = 0; i < copies; i++)
-                {
-                    movieCollection.AddMovie(title, movie);
-                }
+                existingMovie.NumberOfCopies += copies;
             }
             else
             {
-                movie = new Movie(title, genre, classification, duration);
-                for (int i = 0; i < copies; i++)
-                {
-                    movieCollection.AddMovie(title, movie);
-                }
+                Movie movie = new Movie(title, genre, classification, duration, copies);
+                movieCollection.AddMovie(title, movie);
             }
 
             Console.WriteLine("Movie(s) added successfully.");
