@@ -53,7 +53,6 @@ class Program
         else
         {
             Console.WriteLine("Invalid staff credentials.");
-            Console.ReadKey();
         }
     }
 
@@ -112,7 +111,7 @@ class Program
         Console.Write("Enter password: ");
         string password = Console.ReadLine();
 
-        Member member = memberCollection.FindMember(firstName, lastName);
+        Member? member = memberCollection.FindMember(firstName, lastName);
         if (member != null && member.VerifyPassword(password))
         {
             MemberMenu(member);
@@ -120,7 +119,6 @@ class Program
         else
         {
             Console.WriteLine("Invalid member credentials.");
-            Console.ReadKey();
         }
     }
 
@@ -175,7 +173,7 @@ class Program
     private static void AddMovie()
     {
         Console.Write("Enter movie title: ");
-        string title = Console.ReadLine();
+        string? title = Console.ReadLine();
         Console.Write("Enter movie genre (Drama, Adventure, Family, Action, SciFi, Comedy, Animated, Thriller, Other): ");
         Genre genre;
         while (!Enum.TryParse(Console.ReadLine(), out genre))
@@ -201,31 +199,33 @@ class Program
             Console.Write("Invalid number of copies. Enter again: ");
         }
 
-        Movie movie = movieCollection.GetMovie(title);
-        if (movie != null)
+        if (title != null)
         {
-            for (int i = 0; i < copies; i++)
+            Movie? movie = movieCollection.GetMovie(title);
+            if (movie != null)
             {
-                movieCollection.AddMovie(title, movie);
+                for (int i = 0; i < copies; i++)
+                {
+                    movieCollection.AddMovie(title, movie);
+                }
             }
-        }
-        else
-        {
-            movie = new Movie(title, genre, classification, duration);
-            for (int i = 0; i < copies; i++)
+            else
             {
-                movieCollection.AddMovie(title, movie);
+                movie = new Movie(title, genre, classification, duration);
+                for (int i = 0; i < copies; i++)
+                {
+                    movieCollection.AddMovie(title, movie);
+                }
             }
-        }
 
-        Console.WriteLine("Movie(s) added successfully.");
-        Console.ReadKey();
+            Console.WriteLine("Movie(s) added successfully.");
+        }
     }
 
     private static void RemoveMovie()
     {
         Console.Write("Enter movie title: ");
-        string title = Console.ReadLine();
+        string? title = Console.ReadLine();
         Console.Write("Enter number of copies to remove: ");
         int copies;
         while (!int.TryParse(Console.ReadLine(), out copies))
@@ -233,18 +233,19 @@ class Program
             Console.Write("Invalid number of copies. Enter again: ");
         }
 
-        for (int i = 0; i < copies; i++)
+        if (title != null)
         {
-            if (!movieCollection.RemoveMovie(title))
+            for (int i = 0; i < copies; i++)
             {
-                Console.WriteLine("Not enough copies to remove or movie does not exist.");
-                Console.ReadKey();
-                return;
+                if (!movieCollection.RemoveMovie(title))
+                {
+                    Console.WriteLine("Not enough copies to remove or movie does not exist.");
+                    return;
+                }
             }
-        }
 
-        Console.WriteLine("Movie(s) removed successfully.");
-        Console.ReadKey();
+            Console.WriteLine("Movie(s) removed successfully.");
+        }
     }
 
     private static void RegisterMember()
@@ -268,8 +269,6 @@ class Program
         {
             Console.WriteLine("Member already exists.");
         }
-
-        Console.ReadKey();
     }
 
     private static void RemoveMember()
@@ -279,7 +278,7 @@ class Program
         Console.Write("Enter last name: ");
         string lastName = Console.ReadLine();
 
-        Member member = memberCollection.FindMember(firstName, lastName);
+        Member? member = memberCollection.FindMember(firstName, lastName);
         if (member != null)
         {
             if (member.BorrowedMovies.Length == 0)
@@ -296,8 +295,6 @@ class Program
         {
             Console.WriteLine("Member not found.");
         }
-
-        Console.ReadKey();
     }
 
     private static void FindMemberContact()
@@ -307,7 +304,7 @@ class Program
         Console.Write("Enter last name: ");
         string lastName = Console.ReadLine();
 
-        Member member = memberCollection.FindMember(firstName, lastName);
+        Member? member = memberCollection.FindMember(firstName, lastName);
         if (member != null)
         {
             Console.WriteLine($"Contact phone number: {member.ContactPhoneNumber}");
@@ -316,29 +313,28 @@ class Program
         {
             Console.WriteLine("Member not found.");
         }
-
-        Console.ReadKey();
     }
 
     private static void FindMembersRentingMovie()
     {
         Console.Write("Enter movie title: ");
-        string title = Console.ReadLine();
+        string? title = Console.ReadLine();
 
-        Console.WriteLine($"Members currently renting '{title}':");
-        foreach (Member member in memberCollection.GetAllMembers())
+        if (title != null)
         {
-            foreach (Movie movie in member.BorrowedMovies)
+            Console.WriteLine($"Members currently renting '{title}':");
+            foreach (Member member in memberCollection.GetAllMembers())
             {
-                if (movie != null && movie.Title == title)
+                foreach (Movie? movie in member.BorrowedMovies)
                 {
-                    Console.WriteLine($"{member.FirstName} {member.LastName}");
-                    break;
+                    if (movie != null && movie.Title == title)
+                    {
+                        Console.WriteLine($"{member.FirstName} {member.LastName}");
+                        break;
+                    }
                 }
             }
         }
-
-        Console.ReadKey();
     }
 
     // Member menu methods
@@ -347,55 +343,56 @@ class Program
     {
         Console.Clear();
         movieCollection.DisplayAllMovies();
-        Console.ReadKey();
     }
 
     private static void DisplayMovieInfo()
     {
         Console.Write("Enter movie title: ");
-        string title = Console.ReadLine();
-        Movie movie = movieCollection.GetMovie(title);
+        string? title = Console.ReadLine();
 
-        if (movie != null)
+        if (title != null)
         {
-            Console.WriteLine(movie);
+            Movie? movie = movieCollection.GetMovie(title);
+            if (movie != null)
+            {
+                Console.WriteLine(movie);
+            }
+            else
+            {
+                Console.WriteLine("Movie not found.");
+            }
         }
-        else
-        {
-            Console.WriteLine("Movie not found.");
-        }
-
-        Console.ReadKey();
     }
 
     private static void BorrowMovie(Member member)
     {
         Console.Write("Enter movie title: ");
-        string title = Console.ReadLine();
-        Movie movie = movieCollection.GetMovie(title);
+        string? title = Console.ReadLine();
 
-        if (movie != null)
+        if (title != null)
         {
-            if (member.BorrowMovie(movie))
+            Movie? movie = movieCollection.GetMovie(title);
+            if (movie != null)
             {
-                movieCollection.IncrementBorrowCount(title);
-                Console.WriteLine("Movie borrowed successfully.");
+                if (member.BorrowMovie(movie))
+                {
+                    movieCollection.IncrementBorrowCount(title);
+                    Console.WriteLine("Movie borrowed successfully.");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Movie not found.");
             }
         }
-        else
-        {
-            Console.WriteLine("Movie not found.");
-        }
-
-        Console.ReadKey();
     }
 
     private static void ReturnMovie(Member member)
     {
         Console.Write("Enter movie title: ");
-        string title = Console.ReadLine();
+        string? title = Console.ReadLine();
 
-        if (member.ReturnMovie(title))
+        if (title != null && member.ReturnMovie(title))
         {
             Console.WriteLine("Movie returned successfully.");
         }
@@ -403,14 +400,11 @@ class Program
         {
             Console.WriteLine("Movie not found in your borrowed list.");
         }
-
-        Console.ReadKey();
     }
 
     private static void ListBorrowedMovies(Member member)
     {
         member.ListBorrowedMovies();
-        Console.ReadKey();
     }
 
     private static void DisplayTopBorrowedMovies()
@@ -423,6 +417,5 @@ class Program
         {
             Console.WriteLine($"{allMovies[i].Value.Title}: {allMovies[i].Value.BorrowCount} times");
         }
-        Console.ReadKey();
     }
 }

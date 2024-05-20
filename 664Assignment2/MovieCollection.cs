@@ -54,7 +54,7 @@ public class MovieCollection
     {
         int index = GetHash(title);
         Node current = table[index];
-        Node previous = null;
+        Node? previous = null;
 
         while (current != null)
         {
@@ -76,7 +76,7 @@ public class MovieCollection
         return false;
     }
 
-    public Movie GetMovie(string title)
+    public Movie? GetMovie(string title)
     {
         int index = GetHash(title);
         Node current = table[index];
@@ -130,7 +130,7 @@ public class MovieCollection
 
     public void IncrementBorrowCount(string title)
     {
-        Movie movie = GetMovie(title);
+        Movie? movie = GetMovie(title);
         if (movie != null)
         {
             movie.BorrowCount++;

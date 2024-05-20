@@ -48,7 +48,7 @@ public class MemberCollection
         return false;
     }
 
-    public Member FindMember(string firstName, string lastName)
+    public Member? FindMember(string firstName, string lastName)
     {
         for (int i = 0; i < memberCount; i++)
         {
