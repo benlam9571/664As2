@@ -205,16 +205,17 @@ class Program
             if (existingMovie != null)
             {
                 existingMovie.NumberOfCopies += copies;
+                Console.WriteLine($"Movie '{title}' already exists. Updated number of copies to {existingMovie.NumberOfCopies}.");
             }
             else
             {
                 Movie movie = new Movie(title, genre, classification, duration, copies);
                 movieCollection.AddMovie(title, movie);
+                Console.WriteLine("Movie(s) added successfully.");
             }
-
-            Console.WriteLine("Movie(s) added successfully.");
         }
     }
+
 
     private static void RemoveMovie()
     {
