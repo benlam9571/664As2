@@ -1,25 +1,26 @@
 {
   "format": 1,
   "restore": {
-    "/Users/benlam/664As2/664Assignment2/664Assignment2.csproj": {}
+    "/Users/benbang/Documents/664/664As2/664Assignment2/664Assignment2.csproj": {}
   },
   "projects": {
-    "/Users/benlam/664As2/664Assignment2/664Assignment2.csproj": {
+    "/Users/benbang/Documents/664/664As2/664Assignment2/664Assignment2.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/benlam/664As2/664Assignment2/664Assignment2.csproj",
+        "projectUniqueName": "/Users/benbang/Documents/664/664As2/664Assignment2/664Assignment2.csproj",
         "projectName": "664Assignment2",
-        "projectPath": "/Users/benlam/664As2/664Assignment2/664Assignment2.csproj",
-        "packagesPath": "/Users/benlam/.nuget/packages/",
-        "outputPath": "/Users/benlam/664As2/664Assignment2/obj/",
+        "projectPath": "/Users/benbang/Documents/664/664As2/664Assignment2/664Assignment2.csproj",
+        "packagesPath": "/Users/benbang/.nuget/packages/",
+        "outputPath": "/Users/benbang/Documents/664/664As2/664Assignment2/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/benlam/.nuget/NuGet/NuGet.Config"
+          "/Users/benbang/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
+          "/usr/local/share/dotnet/library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {

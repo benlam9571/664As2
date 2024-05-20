@@ -1,30 +1,69 @@
-using System;
-
-namespace LibraryManagement
+public class MemberCollection
 {
-    public class MemberCollection
+    private const int MaxSize = 1000;
+    private Member[] members;
+    private int memberCount;
+
+    public MemberCollection()
     {
-        private CustomList<Member> members = new CustomList<Member>();
+        members = new Member[MaxSize];
+        memberCount = 0;
+    }
 
-        public void AddMember(Member member)
+    public bool AddMember(Member member)
+    {
+        if (memberCount >= MaxSize)
         {
-            members.Add(member);
-        }
-
-        public bool RemoveMember(string firstName, string lastName)
-        {
-            var member = members.Find(m => m.FirstName == firstName && m.LastName == lastName);
-            if (member != null)
-            {
-                members.Remove(member);
-                return true;
-            }
+            Console.WriteLine("Member collection is full.");
             return false;
         }
 
-        public Member FindMember(string firstName, string lastName, string password)
+        for (int i = 0; i < memberCount; i++)
         {
-            return members.Find(m => m.FirstName == firstName && m.LastName == lastName && m.Password == password);
+            if (members[i].FirstName == member.FirstName && members[i].LastName == member.LastName)
+            {
+                Console.WriteLine("Member already exists.");
+                return false;
+            }
         }
+
+        members[memberCount] = member;
+        memberCount++;
+        return true;
+    }
+
+    public bool RemoveMember(string firstName, string lastName)
+    {
+        for (int i = 0; i < memberCount; i++)
+        {
+            if (members[i].FirstName == firstName && members[i].LastName == lastName)
+            {
+                members[i] = members[memberCount - 1];
+                members[memberCount - 1] = null;
+                memberCount--;
+                return true;
+            }
+        }
+        Console.WriteLine("Member not found.");
+        return false;
+    }
+
+    public Member FindMember(string firstName, string lastName)
+    {
+        for (int i = 0; i < memberCount; i++)
+        {
+            if (members[i].FirstName == firstName && members[i].LastName == lastName)
+            {
+                return members[i];
+            }
+        }
+        return null;
+    }
+
+    public Member[] GetAllMembers()
+    {
+        Member[] allMembers = new Member[memberCount];
+        Array.Copy(members, allMembers, memberCount);
+        return allMembers;
     }
 }
