@@ -40,6 +40,12 @@ public class Movie
 
     public override string ToString()
     {
+        return $"Title: {Title}, Genre: {Genre}, Classification: {Classification}, Duration: {Duration} minutes";
+    }
+
+    public string ToDetailedString()
+    {
         return $"Title: {Title}, Genre: {Genre}, Classification: {Classification}, Duration: {Duration} minutes, Borrowed: {BorrowCount} times, Copies: {NumberOfCopies}";
     }
+
 }

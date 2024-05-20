@@ -106,14 +106,30 @@ public class MovieCollection
 
     public void DisplayAllMovies()
     {
-        Node[] allMovies = GetAllNodes();
-        Array.Sort(allMovies, (x, y) => string.Compare(x.Key, y.Key));
+        DynamicArray<Node> allMovies = new DynamicArray<Node>();
 
-        foreach (var node in allMovies)
+        // Gather all movies from the hash table
+        for (int i = 0; i < MaxSize; i++)
         {
-            Console.WriteLine(node.Value);
+            Node current = table[i];
+            while (current != null)
+            {
+                allMovies.Add(current);
+                current = current.Next;
+            }
+        }
+
+        // Sort movies by title in dictionary order
+        allMovies.Sort((x, y) => string.Compare(x.Key, y.Key));
+
+        // Display sorted movies
+        for (int i = 0; i < allMovies.Count; i++)
+        {
+            Console.WriteLine(allMovies[i].Value);
         }
     }
+
+
 
     public Node[] GetAllNodes()
     {
@@ -142,5 +158,52 @@ public class MovieCollection
         {
             movie.BorrowCount++;
         }
+    }
+}
+public class DynamicArray<T>
+{
+    private T[] array;
+    private int count;
+
+    public DynamicArray(int capacity = 4)
+    {
+        array = new T[capacity];
+        count = 0;
+    }
+
+    public int Count => count;
+
+    public void Add(T item)
+    {
+        if (count == array.Length)
+        {
+            Resize();
+        }
+        array[count] = item;
+        count++;
+    }
+
+    public T this[int index]
+    {
+        get
+        {
+            if (index < 0 || index >= count)
+            {
+                throw new IndexOutOfRangeException();
+            }
+            return array[index];
+        }
+    }
+
+    public void Sort(Comparison<T> comparison)
+    {
+        Array.Sort(array, 0, count, Comparer<T>.Create(comparison));
+    }
+
+    private void Resize()
+    {
+        T[] newArray = new T[array.Length * 2];
+        Array.Copy(array, newArray, count);
+        array = newArray;
     }
 }

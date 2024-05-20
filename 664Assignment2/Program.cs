@@ -378,7 +378,7 @@ class Program
             Movie? movie = movieCollection.GetMovie(title);
             if (movie != null)
             {
-                Console.WriteLine(movie);
+                Console.WriteLine(movie.ToDetailedString());
             }
             else
             {
