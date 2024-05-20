@@ -2,11 +2,15 @@ public class MovieCollection
 {
     private const int MaxSize = 1000;
     private Node[] table;
+    private int count;
 
     public MovieCollection()
     {
         table = new Node[MaxSize];
+        count = 0;
     }
+
+    public int Count => count;
 
     private int GetHash(string key)
     {
@@ -26,6 +30,7 @@ public class MovieCollection
         if (table[index] == null)
         {
             table[index] = newNode;
+            count++;
         }
         else
         {
@@ -46,6 +51,7 @@ public class MovieCollection
             else
             {
                 current.Next = newNode;
+                count++;
             }
         }
     }
@@ -74,6 +80,7 @@ public class MovieCollection
                     {
                         previous.Next = current.Next;
                     }
+                    count--;
                 }
                 return true;
             }

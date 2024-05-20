@@ -189,6 +189,14 @@ class Program
     {
         Console.Write("Enter movie title: ");
         string? title = Console.ReadLine();
+        if (string.IsNullOrWhiteSpace(title))
+        {
+            Console.WriteLine("No movie title entered. Please try again.");
+            Console.WriteLine("Press any key to continue...");
+            Console.ReadKey(); // Pause before clearing
+            Console.Clear();
+            return;
+        }
         Console.Write("Enter movie genre (Drama, Adventure, Family, Action, SciFi, Comedy, Animated, Thriller, Other): ");
         Genre genre;
         while (!Enum.TryParse(Console.ReadLine(), out genre))
@@ -233,6 +241,7 @@ class Program
         Console.Read(); // Pause before clearing
         Console.Clear();
     }
+
 
     private static void RemoveMovie()
     {
@@ -365,7 +374,11 @@ class Program
         string? title = Console.ReadLine();
         Console.Clear();
 
-        if (title != null)
+        if (string.IsNullOrWhiteSpace(title))
+        {
+            Console.WriteLine("No movie title entered. Please try again.");
+        }
+        else
         {
             Movie? movie = movieCollection.GetMovie(title);
             if (movie != null)
@@ -399,13 +412,22 @@ class Program
         Console.Clear();
     }
 
+
     private static void DisplayAllMovies()
     {
-        movieCollection.DisplayAllMovies();
+        if (movieCollection.Count == 0)
+        {
+            Console.WriteLine("No movies available in the library.");
+        }
+        else
+        {
+            movieCollection.DisplayAllMovies();
+        }
         Console.WriteLine("Press any key to continue...");
         Console.Read(); // Pause before clearing
         Console.Clear();
     }
+
 
     private static void DisplayMovieInfo()
     {
@@ -413,7 +435,11 @@ class Program
         string? title = Console.ReadLine();
         Console.WriteLine(); // Add a blank line before the output
 
-        if (title != null)
+        if (string.IsNullOrWhiteSpace(title))
+        {
+            Console.WriteLine("No movie title entered. Please try again.");
+        }
+        else
         {
             Movie? movie = movieCollection.GetMovie(title);
             if (movie != null)
@@ -430,6 +456,7 @@ class Program
         Console.Read(); // Pause before clearing
         Console.Clear();
     }
+
 
     private static void BorrowMovie(Member member)
     {
