@@ -6,7 +6,7 @@ public class Member
     private string Password { get; set; }
     public Movie[] BorrowedMovies { get; set; }
     private const int MaxBorrowedMovies = 5;
-    private int BorrowedCount { get; set; }
+    public int BorrowedCount { get; set; }
 
     public Member(string firstName, string lastName, string contactPhoneNumber, string password)
     {

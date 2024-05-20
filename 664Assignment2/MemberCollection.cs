@@ -38,9 +38,15 @@ public class MemberCollection
         {
             if (members[i].FirstName == firstName && members[i].LastName == lastName)
             {
+                if (members[i].BorrowedCount > 0)
+                {
+                    Console.WriteLine("Member cannot be removed. They must return all borrowed DVDs first.");
+                    return false;
+                }
                 members[i] = members[memberCount - 1];
                 members[memberCount - 1] = null;
                 memberCount--;
+                Console.WriteLine("Member removed successfully.");
                 return true;
             }
         }

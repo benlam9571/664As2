@@ -294,14 +294,14 @@ class Program
         Member? member = memberCollection.FindMember(firstName, lastName);
         if (member != null)
         {
-            if (member.BorrowedMovies.Length == 0)
+            if (member.BorrowedCount > 0)
             {
-                memberCollection.RemoveMember(firstName, lastName);
-                Console.WriteLine("Member removed successfully.");
+                Console.WriteLine("Member cannot be removed. They must return all borrowed DVDs first.");
             }
             else
             {
-                Console.WriteLine("Member has borrowed movies. Cannot remove.");
+                memberCollection.RemoveMember(firstName, lastName);
+                Console.WriteLine("Member removed successfully.");
             }
         }
         else
