@@ -256,8 +256,21 @@ class Program
         string lastName = Console.ReadLine();
         Console.Write("Enter contact phone number: ");
         string phoneNumber = Console.ReadLine();
-        Console.Write("Enter 4-digit password: ");
-        string password = Console.ReadLine();
+
+        string password;
+        while (true)
+        {
+            Console.Write("Enter 4-digit password: ");
+            password = Console.ReadLine();
+            if (password.Length == 4 && int.TryParse(password, out _))
+            {
+                break;
+            }
+            else
+            {
+                Console.WriteLine("Invalid password. The password must be a 4-digit number.");
+            }
+        }
 
         if (memberCollection.FindMember(firstName, lastName) == null)
         {
