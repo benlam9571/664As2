@@ -329,20 +329,35 @@ class Program
 
         if (title != null)
         {
-            Console.WriteLine($"Members currently renting '{title}':");
-            foreach (Member member in memberCollection.GetAllMembers())
+            Movie? movie = movieCollection.GetMovie(title);
+            if (movie != null)
             {
-                foreach (Movie? movie in member.BorrowedMovies)
+                Console.WriteLine($"Members currently renting '{title}':");
+                bool found = false;
+                foreach (Member member in memberCollection.GetAllMembers())
                 {
-                    if (movie != null && movie.Title == title)
+                    foreach (Movie? borrowedMovie in member.BorrowedMovies)
                     {
-                        Console.WriteLine($"{member.FirstName} {member.LastName}");
-                        break;
+                        if (borrowedMovie != null && borrowedMovie.Title == title)
+                        {
+                            Console.WriteLine($"{member.FirstName} {member.LastName}");
+                            found = true;
+                            break;
+                        }
                     }
                 }
+                if (!found)
+                {
+                    Console.WriteLine($"No members are currently renting '{title}'.");
+                }
+            }
+            else
+            {
+                Console.WriteLine($"Movie '{title}' not available in the library.");
             }
         }
     }
+
 
     // Member menu methods
 
