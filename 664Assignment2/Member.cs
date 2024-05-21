@@ -23,27 +23,37 @@ public class Member
         return Password == password;
     }
 
-    public bool BorrowMovie(Movie movie)
+    public bool BorrowDVD(Movie movie)
+{
+    if (BorrowedCount >= MaxBorrowedMovies)
     {
-        if (BorrowedCount > MaxBorrowedMovies)
+        Console.WriteLine("Cannot borrow more than 5 movies at a time.");
+        return false;
+    }
+
+    for (int i = 0; i < BorrowedCount; i++)
+    {
+        if (BorrowedMovies[i].Title == movie.Title)
         {
-            Console.WriteLine("Cannot borrow more than 5 movies at a time.");
+            Console.WriteLine("Cannot borrow more than one copy of the same movie.");
             return false;
         }
+    }
 
-        for (int i = 0; i < BorrowedCount; i++)
-        {
-            if (BorrowedMovies[i].Title == movie.Title)
-            {
-                Console.WriteLine("Cannot borrow more than one copy of the same movie.");
-                return false;
-            }
-        }
-
+    if (movie.NumberOfCopies > 0)
+    {
         BorrowedMovies[BorrowedCount] = movie;
         BorrowedCount++;
+        movie.NumberOfCopies--;
+        movie.BorrowCount++;
         return true;
     }
+    else
+    {
+        Console.WriteLine("No copies available to borrow.");
+        return false;
+    }
+}
 
     public bool ReturnMovie(string title)
     {

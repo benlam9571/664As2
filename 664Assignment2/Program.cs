@@ -163,7 +163,7 @@ class Program
                     DisplayMovieInfo();
                     break;
                 case "3":
-                    BorrowMovie(member);
+                    BorrowDVD(member);
                     break;
                 case "4":
                     ReturnMovie(member);
@@ -458,7 +458,7 @@ class Program
     }
 
 
-    private static void BorrowMovie(Member member)
+    private static void BorrowDVD(Member member)
     {
         Console.Write("Enter movie title: ");
         string? title = Console.ReadLine();
@@ -469,7 +469,7 @@ class Program
             Movie? movie = movieCollection.GetMovie(title);
             if (movie != null)
             {
-                if (member.BorrowMovie(movie))
+                if (member.BorrowDVD(movie))
                 {
                     movieCollection.IncrementBorrowCount(title);
                     Console.WriteLine("Movie borrowed successfully.");
