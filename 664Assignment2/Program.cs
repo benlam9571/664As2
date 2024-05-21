@@ -163,7 +163,7 @@ class Program
                     DisplayMovieInfo();
                     break;
                 case "3":
-                    BorrowMovie(member);
+                    BorrowDVD(member);
                     break;
                 case "4":
                     ReturnMovie(member);
@@ -172,7 +172,7 @@ class Program
                     ListBorrowedMovies(member);
                     break;
                 case "6":
-                    DisplayTopBorrowedMovies();
+                    DisplayTop3BorrowedMovies();
                     break;
                 case "0":
                     return;
@@ -458,7 +458,7 @@ class Program
     }
 
 
-    private static void BorrowMovie(Member member)
+    private static void BorrowDVD(Member member)
     {
         Console.Write("Enter movie title: ");
         string? title = Console.ReadLine();
@@ -469,7 +469,7 @@ class Program
             Movie? movie = movieCollection.GetMovie(title);
             if (movie != null)
             {
-                if (member.BorrowMovie(movie))
+                if (member.BorrowDVD(movie))
                 {
                     movieCollection.IncrementBorrowCount(title);
                     Console.WriteLine("Movie borrowed successfully.");
@@ -511,19 +511,80 @@ class Program
         Console.Read();
         Console.Clear();
     }
-
-    private static void DisplayTopBorrowedMovies()
+    private static void DisplayTop3BorrowedMovies()
     {
-        Node[] allMovies = movieCollection.GetAllNodes();
-        Array.Sort(allMovies, (x, y) => y.Value.BorrowCount.CompareTo(x.Value.BorrowCount));
+        Movie[] movies = movieCollection.GetAllMovies();
+        if (movies.Length == 0)
+        {
+            Console.WriteLine("No movies in the collection.");
+            return;
+        }
+
+        MergeSort(movies, 0, movies.Length - 1);
 
         Console.WriteLine("Top 3 Most Borrowed Movies:");
-        for (int i = 0; i < Math.Min(3, allMovies.Length); i++)
+        for (int i = 0; i < Math.Min(3, movies.Length); i++)
         {
-            Console.WriteLine($"{allMovies[i].Value.Title}: {allMovies[i].Value.BorrowCount} times");
+            Console.WriteLine($"{movies[i].Title}: {movies[i].BorrowCount} times");
         }
-        Console.WriteLine("** Press any key to continue **");
+         Console.WriteLine("** Press any key to continue **");
         Console.Read();
         Console.Clear();
+    }
+
+    static void MergeSort(Movie[] array, int left, int right)
+    {
+        if (left < right)
+        {
+            int middle = (left + right) / 2;
+            MergeSort(array, left, middle);
+            MergeSort(array, middle + 1, right);
+            Merge(array, left, middle, right);
+        }
+    }
+
+    static void Merge(Movie[] array, int left, int middle, int right)
+    {
+        int leftSize = middle - left + 1;
+        int rightSize = right - middle;
+
+        Movie[] leftArray = new Movie[leftSize];
+        Movie[] rightArray = new Movie[rightSize];
+
+        for (int i = 0; i < leftSize; i++)
+            leftArray[i] = array[left + i];
+        for (int i = 0; i < rightSize; i++)
+            rightArray[i] = array[middle + 1 + i];
+
+        int iLeft = 0, iRight = 0;
+        int k = left;
+        while (iLeft < leftSize && iRight < rightSize)
+        {
+            if (leftArray[iLeft].BorrowCount >= rightArray[iRight].BorrowCount)
+            {
+                array[k] = leftArray[iLeft];
+                iLeft++;
+            }
+            else
+            {
+                array[k] = rightArray[iRight];
+                iRight++;
+            }
+            k++;
+        }
+
+        while (iLeft < leftSize)
+        {
+            array[k] = leftArray[iLeft];
+            iLeft++;
+            k++;
+        }
+
+        while (iRight < rightSize)
+        {
+            array[k] = rightArray[iRight];
+            iRight++;
+            k++;
+        }
     }
 }
