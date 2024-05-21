@@ -105,6 +105,23 @@ public class MovieCollection
         }
         return null;
     }
+public Movie[] GetAllMovies()
+    {
+        Movie[] movies = new Movie[count];
+        int index = 0;
+
+        for (int i = 0; i < MaxSize; i++)
+        {
+            Node current = table[i];
+            while (current != null)
+            {
+                movies[index++] = current.Value;
+                current = current.Next;
+            }
+        }
+
+        return movies;
+    }
 
     public bool ContainsMovie(string title)
     {

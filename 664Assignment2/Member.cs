@@ -25,7 +25,7 @@ public class Member
 
     public bool BorrowMovie(Movie movie)
     {
-        if (BorrowedCount >= MaxBorrowedMovies)
+        if (BorrowedCount > MaxBorrowedMovies)
         {
             Console.WriteLine("Cannot borrow more than 5 movies at a time.");
             return false;
