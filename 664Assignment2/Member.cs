@@ -45,7 +45,6 @@ public class Member
         BorrowedMovies[BorrowedCount] = movie;
         BorrowedCount++;
         movie.NumberOfCopies--;
-        movie.BorrowCount++;
         return true;
     }
     else
@@ -56,20 +55,22 @@ public class Member
 }
 
     public bool ReturnMovie(string title)
+{
+    for (int i = 0; i < BorrowedCount; i++)
     {
-        for (int i = 0; i < BorrowedCount; i++)
+        if (BorrowedMovies[i] != null && BorrowedMovies[i].Title == title)
         {
-            if (BorrowedMovies[i].Title == title)
-            {
-                BorrowedMovies[i] = BorrowedMovies[BorrowedCount - 1];
-                BorrowedMovies[BorrowedCount - 1] = null;
-                BorrowedCount--;
-                return true;
-            }
+            BorrowedMovies[i].NumberOfCopies++; // Increment the number of copies
+            BorrowedMovies[i] = BorrowedMovies[BorrowedCount - 1];
+            BorrowedMovies[BorrowedCount - 1] = null;
+            BorrowedCount--;
+            return true;
         }
-        Console.WriteLine("Movie not found in the borrowed list.");
-        return false;
     }
+    Console.WriteLine("Movie not found in the borrowed list.");
+    return false;
+}
+
 
     public void ListBorrowedMovies()
     {

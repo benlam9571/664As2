@@ -183,6 +183,15 @@ public Movie[] GetAllMovies()
             movie.BorrowCount++;
         }
     }
+
+    public void DecrementBorrowCount(string title)
+    {
+        Movie? movie = GetMovie(title);
+        if (movie != null)
+        {
+            movie.BorrowCount--;
+        }
+    }
 }
 public class DynamicArray<T>
 {
